@@ -7,7 +7,7 @@ import plotly.express as px
 from streamlit.proto.Markdown_pb2 import Markdown
 sidebar=st.sidebar
 sidebar.text('Dataset')
-sidebar.image('Spotify.jpg')
+sidebar.image('Music.gif')
 selectoption = sidebar.selectbox('SELECT ONE ✌️',['View Data','Visualizations'])
 
 if selectoption:
@@ -15,7 +15,7 @@ if selectoption:
     sidebar.text(f'Enjoy')
 def init():
     st.title('Analytics of Spotify Hits')
-    st.image('Spotify.jpg')
+    st.image('Spot.gif')
     st.subheader('Data for Spotify Hits')
 
 init()
@@ -31,6 +31,12 @@ def Viewanalysis():
     st.header('Visualizations')
     st.markdown('---')
 
+if selectoption == 'View Data':
+    showdata()
+elif selectoption == 'Visualizations':
+    Viewanalysis()
+
+
 st.subheader('Genre - Danceability')
 Songs=df.head(21524)
 st.caption('This scatter shows us the danceability genre wise')
@@ -39,10 +45,10 @@ st.markdown('# ')
 
 
 
-st.subheader('Loudenss - Genre')
-Songs=df.head(21524)
+st.subheader('Loudness - Genre')
+Songs=df.head(25000)
 st.caption('This scatter tells us about the loudness per genre')
-st.plotly_chart(px.bar(data_frame=Songs,x='loudness',y='genre',height=800,width=1100,color_continuous_scale=px.colors.sequential.Viridis,hover_name='song_name',color='loudness'))
+st.plotly_chart(px.bar(data_frame=Songs,x='genre',y='loudness',template='none',height=800,width=1100,hover_name='song_name',color='genre'))
 st.markdown('# ')
 
 
@@ -103,7 +109,7 @@ st.markdown('# ')
 
 
 
-st.subheader('Type - Genre')
+st.subheader('Energy - Genre')
 Songs=df.head(42304)
 st.caption('This chart shows the bar representation of type and genre')
 st.plotly_chart(px.bar(data_frame=Songs,x='genre',y='energy',hover_name='song_name',height=800,width=1100,template='none',color='genre'))
@@ -168,18 +174,8 @@ st.markdown('# ')
 
 
 
-st.subheader('Genre - Valence')
+st.subheader('Songs - Valence')
 Songs=df.head(20)
 st.caption('This chart tells us where the valence and key falls (Genre wise)')
 st.plotly_chart(px.line(data_frame=Songs,x='song_name',y='valence',height=800,width=1100,template='plotly_dark'))
 st.markdown('# ')
-
-
-
-
-if selectoption == 'View Data':
-    showdata()
-elif selectoption == 'Visualizations':
-    Viewanalysis()
-
-
