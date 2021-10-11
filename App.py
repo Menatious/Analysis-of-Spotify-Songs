@@ -111,7 +111,7 @@ st.markdown('# ')
 
 st.subheader('Energy - Genre')
 Songs=df.head(42304)
-st.caption('This chart shows the bar representation of type and genre')
+st.caption('This chart shows the bar representation of Energy and genre')
 st.plotly_chart(px.bar(data_frame=Songs,x='genre',y='energy',hover_name='song_name',height=800,width=1100,template='none',color='genre'))
 st.markdown('# ')
 
